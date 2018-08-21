@@ -135,7 +135,7 @@ Then, the tissue specific enrichment analysis for query RNA-seq is finish. After
 > write.csv(tseaed_in_GTEx_summary,"RNAseq_summary_in_GTEx_panel.csv")
 
 ## Citation
-Pei G., Dai Y., Zhao Z, Jia P. (2018) Tissue-Specific Enrichment Analysis (TSEA) to decode tissue heterogeneity. Bioinformatics, in submission.
+Pei G., Dai Y., Zhao Z, Jia P. (2018) Tissue-Specific Enrichment Analysis (TSEA) to decode tissue heterogeneity. In submission.
 
 
 
