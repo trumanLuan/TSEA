@@ -72,8 +72,8 @@ Save summary result in to a spreadsheet:
 `> tsea_t_multi_summary = tsea.summary(tsea_t_multi)`  
 `> write.csv(tsea_t_multi_summary,"GWAS_multi_summary_GTEx_panel.csv")`
 
-### 2.3.3 TSEA for RNA-seq profiles
-For a quick start, user can use ENCODE example RNA-seq profiles make TSEA in GTEx panel:  
+### 2.3.3 TSEA for RNA-Seq profiles
+For a quick start, user can use ENCODE example RNA-Seq profiles make TSEA in GTEx panel:  
 Load ENCODE query data:  
 `> load("data/query_ENCODE.rda")`  
 `> query.matrix = query_ENCODE`  
@@ -90,12 +90,12 @@ RNA-Seq profiles scale by abundance normalization:
 
 After get normalized RPKM value, we submit it for `tsea.expression.decode()`:   
 `> tseaed_in_GTEx = tsea.expression.decode(query_mat_abundance_nor, GTEx_t_score, ratio = 0.05, p.adjust.method = "BH")`  
-Then, the tissue specific enrichment analysis for query RNA-seq is finish. After tissue specific enrichment decode analysis, one-side t-test results between query RNA-seq sample tissue specific genes (top 5%) versus remains genes (95%) is stored in variable `tseaed_in_GTEx`. Further analysis for top 3 most associated tissues is similar to previous analysis:  
+Then, the tissue specific enrichment analysis for query RNA-Seq is finish. After tissue specific enrichment decode analysis, one-side t-test results between query RNA-Seq sample tissue specific genes (top 5%) versus remains genes (95%) is stored in variable `tseaed_in_GTEx`. Further analysis for top 3 most associated tissues is similar to previous analysis:  
 `> tsea.plot(tseaed_in_GTEx, threshold = 0.05)`  
 `> tseaed_in_GTEx_summary = tsea.summary(tseaed_in_GTEx)`  
 `> write.csv(tseaed_in_GTEx_summary,"RNAseq_summary_in_GTEx_panel.csv")`  
 
-To prove the robustness of our proposed pipeline, user can validate the two reference panels through self-validation. Simply, load GTEx example RNA-seq profiles and perform tissue-specific enrichment analysis in ENCODE panel:  
+To prove the robustness of our proposed pipeline, user can validate the two reference panels through self-validation. Simply, load GTEx example RNA-Seq profiles and perform tissue-specific enrichment analysis in ENCODE panel:  
 `> load("data/query_GTEx.rda")`  
 `> query.matrix = query_GTEx`  
 RNA expression profiles z-score normalization:   
