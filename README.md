@@ -81,9 +81,9 @@ As RNA-Seq samples are often heterogeneous, before in-depth analysis, it’s nec
 (2) `abundance` normalization will provide an abundance correction approach for the query sample for each tissue in the reference panel as below: e_i=(log2(e_0+1)/(log2(u_t+1)+1).  
 
 We have the preloaded the test RPKM variable in `query.matrix` and correction variable in `correction_factor`, we take "abundance" normalization approach as an example, simply type:  
-RNA-Seq profiles scale by abundance normalization:
+RNA-Seq profiles scale by abundance normalization:  
 `> query_mat_abundance_nor = tsea.expression.normalization(query.matrix, correction_factor, normalization = "abundance")`  
-After get normalized RPKM value, we submit it for `tsea.expression.decode()`:  
+After get normalized RPKM value, we submit it for `tsea.expression.decode()`:   
 `> tseaed_in_GTEx = tsea.expression.decode(query_mat_abundance_nor, GTEx_t_score, ratio = 0.05, p.adjust.method = "BH")`  
 Then, the tissue specific enrichment analysis for query RNA-seq is finish. After tissue specific enrichment decode analysis, one-side t-test results between query RNA-seq sample tissue specific genes (top 5%) versus remains genes (95%) is stored in variable `tseaed_in_GTEx`. Further analysis for top 3 most associated tissues is similar to previous analysis:  
 `> tsea.plot(tseaed_in_GTEx, 0.05)`  
