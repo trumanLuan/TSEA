@@ -41,7 +41,7 @@ The Fisher's Exact Test results between query gene list and each tissue specific
 You can check tissue-specific enrichment analysis result by:    
 `> head(tsea_t)`  
 For better visualization and summary, we provide one plot and one summary function to list the top 3 enriched tissues, simply run:  
-`> tsea.plot(tsea_t, 0.05)`  
+`> tsea.plot(tsea_t, threshold = 0.05)`  
 `> tsea_t_summary = tsea.summary(tsea_t)`  
 
 ### 2.3.2 TSEA for multiple gene lists  
@@ -64,7 +64,7 @@ Save tissue-specific enrichment analysis result:
 `> write.csv(tsea_t_multi,"GWAS_multi_TSEA_in_GTEx_panel.csv")`  
 Save the tissue-specific enrichment analysis plot:  
 `> pdf ("GWAS_multi_TSEA_in_GTEx_panel.pdf", 6, 6, onefile = FALSE)`  
-`> tsea.plot(tsea_t_multi, 0.05)`  
+`> tsea.plot(tsea_t_multi, threshold = 0.05)`  
 `> dev.off()`   
 Save your result in to a spreadsheet:  
 `> tsea_t_multi_summary = tsea.summary(tsea_t_multi)`  
@@ -89,7 +89,7 @@ RNA-Seq profiles scale by abundance normalization:
 After get normalized RPKM value, we submit it for `tsea.expression.decode()`:   
 `> tseaed_in_GTEx = tsea.expression.decode(query_mat_abundance_nor, GTEx_t_score, ratio = 0.05, p.adjust.method = "BH")`  
 Then, the tissue specific enrichment analysis for query RNA-seq is finish. After tissue specific enrichment decode analysis, one-side t-test results between query RNA-seq sample tissue specific genes (top 5%) versus remains genes (95%) is stored in variable `tseaed_in_GTEx`. Further analysis for top 3 most associated tissues is similar to previous analysis:  
-`> tsea.plot(tseaed_in_GTEx, 0.05)`  
+`> tsea.plot(tseaed_in_GTEx, threshold = 0.05)`  
 `> tseaed_in_GTEx_summary = tsea.summary(tseaed_in_GTEx)`  
 `> write.csv(tseaed_in_GTEx_summary,"RNAseq_summary_in_GTEx_panel.csv")`  
 
@@ -104,7 +104,7 @@ RNA expression profiles TSEA in ENCODE panel:
 The reader is encouraged to open and view the file in a spreadsheet software, or inspect it directly within R using the command `fix(tseaed_in_ENCODE)`. In addition, sometime, you might want to edit some parameters for your own data, e.g., you can change the `GTEx_t_score` to `ENCODE_z_score` for ENCODE tissue specific enrichment analysis, you can also change the tissue specific genes `ratio` from `0.05` to `0.2`, or change the `p.adjust.method` to `"bonferroni"`.  
 
 Further analysis for top 3 most associated tissues is similar to previous analysis:  
-`> tsea.plot(tseaed_in_ENCODE, 0.05)`  
+`> tsea.plot(tseaed_in_ENCODE, threshold = 0.05)`  
 `> tseaed_in_ENCODE_summary = tsea.summary(tseaed_in_ENCODE)`  
 `> write.csv(tseaed_in_ENCODE_summary,"output.csv")`  
 
