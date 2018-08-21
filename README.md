@@ -68,7 +68,7 @@ Save the tissue-specific enrichment analysis plot:
 `> pdf ("GWAS_multi_TSEA_in_GTEx_panel.pdf", 6, 6, onefile = FALSE)`  
 `> tsea.plot(tsea_t_multi, threshold = 0.05)`  
 `> dev.off()`   
-Save your result in to a spreadsheet:  
+Save summary result in to a spreadsheet:  
 `> tsea_t_multi_summary = tsea.summary(tsea_t_multi)`  
 `> write.csv(tsea_t_multi_summary,"GWAS_multi_summary_GTEx_panel.csv")`
 
