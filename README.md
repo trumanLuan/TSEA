@@ -23,7 +23,7 @@ load the z-score matrix for the ENCODE panel
 `> load("data/ENCODE_z_score.rda")`  
 Then "GTEx_t_score" and "ENCODE_z_score" panels will be loaded to R enviroment.  
 ## 2.3 Input data
-TSEA deals with two types of enrichment analysis for different forms of query data. For convenience, we provide two TSEA functions for query gene lists (single sample and multiple sample), and another function for RNA-Seq expression profiles.    
+TSEA deals with two types of enrichment analysis for different forms of query data. For convenience, we provide two TSEA functions for query gene lists (single sample and multiple samples), and another function for RNA-Seq expression profiles tissue-specific enrichment analysis.    
 ### 2.3.1 TSEA for gene lists
 When the query data are lists of genes, the Fisher’s Exact Test is implemented. The function is `tsea.analysis()`. The input is a vector of gene symbols. Here we used disease-associated genes identified from GWAS summary statistics as an example. The gene symbols can be found here:  
 Load gene symbol from TSEA package.  
@@ -51,7 +51,9 @@ Load multiple gene symbol from TSEA package.
 Or you can read your own gene symbol list from a text file.  
 `> dat = read.table("Gene_list_multiple.txt", head = T, row.names = 1)`  
 `> query.gene.list = dat`  
-Check the total genes number for each sample. To keep result reliable, please keep at least 20 genes for each samples.   
+
+To keep result reliable, please keep at least 20 genes for each samples.   
+Check the total genes number for each sample.
 `> colSums(query.gene.list)`  
 Then, we can make tissue specific enrichment analysis for multiple samples by `tsea.analysis.multiple()` and plot the result by `tsea.plot()`. You can summary the top 3 most associated tissues by `tsea.summary()` function and save your result in to a text-format spreadsheet:  
 Tissue-specific enrichment analysis in GTEx panel:  
