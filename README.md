@@ -20,39 +20,36 @@ load the TSEA package and dependent library
 load the t-statistic matrix for the GTEx panel  
 `> load("data/GTEx_t_score.rda")`  
 load the z-score matrix for the ENCODE panel  
-`> load("data/ENCODE_z_score.rda")  `
+`> load("data/ENCODE_z_score.rda")`  
 Then "GTEx_t_score" and "ENCODE_z_score" panels will be loaded to R enviroment.  
 ## 2.3 Input data
 TSEA deals with two types of enrichment analysis for different forms of query data. 
 ### 2.3.1 TSEA for gene lists
-When the query data are lists of genes, the Fisher’s Exact Test is implemented. The function is tsea.analysis(). The input is a vector of gene symbols. Here we used disease-associated genes identified from GWAS summary statistics as an example. The gene symbols can be found here:
-Load gene symbol from TSEA package.
-> data(GWAS_gene)
-> query.genes = GWAS_gene
+When the query data are lists of genes, the Fisher’s Exact Test is implemented. The function is tsea.analysis(). The input is a vector of gene symbols. Here we used disease-associated genes identified from GWAS summary statistics as an example. The gene symbols can be found here:  
+Load gene symbol from TSEA package.  
+`> load("data/GWAS_gene.rda")`  
+`> query.genes = GWAS_gene`  
 
 Or you can read gene symbol from a text file.
-> dat = read.table("Gene_list.txt",head = F)
-> query.genes = dat[,1]
-Tissue-specific analysis for query gene list.
-tsea_t = tsea.analysis(query.genes, GTEx_t_score, ratio = 0.05, p.adjust.method = "bonferroni")
-Here, the ratio is a value to define tissue-specific genes and provides the first way of categorizing genes. The second way of grouping genes is based on the query genes. The two ways of category form a two by two table, which is used in the Fisher’s Exact Text.
-The Fisher's Exact Test results between query gene list and each tissue specific genes will be stored in variable tsea_t.
+`> dat = read.table("data/Gene_list.txt",head = F)`  
+`> query.genes = dat[,1]`  
+Tissue-specific analysis for query gene list.  
+`> tsea_t = tsea.analysis(query.genes, GTEx_t_score, ratio = 0.05, p.adjust.method = "bonferroni")`
+Here, the ratio is a value to define tissue-specific genes and provides the first way of categorizing genes. The second way of grouping genes is based on the query genes. The two ways of category form a two by two table, which is used in the Fisher’s Exact Text.  
+The Fisher's Exact Test results between query gene list and each tissue specific genes will be stored in variable tsea_t.  
+Check tissue-specific enrichment analysis result.  
+`> head(tsea_t)`
+                                  query  
+Adipose - Subcutaneous       1.00000000  
+Adipose - Visceral (Omentum) 0.01095850  
+Adrenal Gland                1.00000000  
+Artery - Aorta               0.21208614  
+Artery - Coronary            0.01095850  
+Artery - Tibial              0.00257813  
 
-Check tissue-specific enrichment analysis result.
-> head(tsea_t)
-                                  query
-Adipose - Subcutaneous       1.00000000
-Adipose - Visceral (Omentum) 0.01095850
-Adrenal Gland                1.00000000
-Artery - Aorta               0.21208614
-Artery - Coronary            0.01095850
-Artery - Tibial              0.00257813
-
-For better visualization and summary, we provide one plot and one summary function to list the top 3 enriched tissues, simply run:
-> tsea.plot(tsea_t, 0.05)
-> tsea_t_summary = tsea.summary(tsea_t)
-> head (tsea_t_summary)
-Top1	tissue1_p-value	Top2	tissue2_p-value	Top3	tissue3_p-value                              query	"Muscle - Skeletal"	"0.000213565633284591"	"Artery - Tibial" "0.00257812976565265"	"Adipose - Visceral (Omentum)"	"0.0109584998307628"
+For better visualization and summary, we provide one plot and one summary function to list the top 3 enriched tissues, simply run:  
+`> tsea.plot(tsea_t, 0.05)`  
+`> tsea_t_summary = tsea.summary(tsea_t)`  
 
 ### 2.3.2 TSEA for multiple gene lists
 In most condition, you might want to analysis multiple samples together, then you can upload a 0~1 table. In the table, gene labeled with 1 indicated significant associate within a sample, while 0 indicated not in a given sample. You can check the format of example data.
