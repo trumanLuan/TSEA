@@ -55,11 +55,11 @@ Check the total genes number for each sample. To keep result reliable, please ke
 `> colSums(query.gene.list)`  
 Then, we can make tissue specific enrichment analysis for multiple samples by `tsea.analysis.multiple()` and plot the result by `tsea.plot()`. You can summary the top 3 most associated tissues by `tsea.summary()` function and save your result in to a text-format spreadsheet:  
 Tissue-specific enrichment analysis in GTEx panel:  
-`> tsea_t_multi = tsea.analysis.multiple(query.gene.list, GTEx_t_score, 0.05, p.adjust.method = "BH")`  
+`> tsea_t_multi = tsea.analysis.multiple(query.gene.list, GTEx_t_score, ratio = 0.05, p.adjust.method = "BH")`  
 Save tissue-specific enrichment analysis result:  
 `> write.csv(tsea_t_multi,"GWAS_multi_TSEA_in_GTEx_panel.csv")`  
 Save the tissue-specific enrichment analysis plot:  
-`> pdf ("GWAS_multi_TSEA_in_GTEx_panel.pdf",6,6,onefile = FALSE)`  
+`> pdf ("GWAS_multi_TSEA_in_GTEx_panel.pdf", 6, 6, onefile = FALSE)`  
 `> tsea.plot(tsea_t_multi, 0.05)`  
 `> dev.off()`   
 Save your result in to a spreadsheet:  
@@ -67,24 +67,36 @@ Save your result in to a spreadsheet:
 `> write.csv(tsea_t_multi_summary,"GWAS_multi_summary_GTEx_panel.csv")`
 
 ### 2.3.3 TSEA for RNA-seq profiles
-For a quick start, user can use ENCODE example RNA-seq profiles:  
+For a quick start, user can use ENCODE example RNA-seq profiles make TSEA in GTEx panel:  
 Load ENCODE query data:  
 `> load("data/query_ENCODE.rda")`  
 `> query.matrix = query_ENCODE`  
 Load correction variable:  
 `> load("data/correction_factor.rda")` 
+
 As RNA-Seq samples are often heterogeneous, before in-depth analysis, it’s necessary to decode tissue heterogeneity to avoid samples with confounding effects. However, the raw discrete RPKM value should be normalized to continuous variable meet the normal distribution before t-test. We provided two normalization approaches: `"z-score"` and `"abundance"` in function `tsea.expression.normalization()`:  
 (1) `z-score` normalization will calculate a z-score for the query sample for each tissue in the reference panel as below: e_i=(e_0-μ_t))/sd_t, where μ_t and sd_t were the mean and SD of tissue t.   
 (2) `abundance` normalization will provide an abundance correction approach for the query sample for each tissue in the reference panel as below: e_i=(log2(e_0+1)/(log2(u_t+1)+1).  
+
 We have the preloaded the test RPKM variable in `query.matrix` and correction variable in `correction_factor`, we take "abundance" normalization approach as an example, simply type:  
 RNA-Seq profiles scale by abundance normalization:
 `> query_mat_abundance_nor = tsea.expression.normalization(query.matrix, correction_factor, normalization = "abundance")`  
 After get normalized RPKM value, we submit it for `tsea.expression.decode()`:  
-`> tseaed_in_GTEx = tsea.expression.decode(query_mat_abundance_nor, GTEx_t_score, 0.05, p.adjust.method = "BH")`  
+`> tseaed_in_GTEx = tsea.expression.decode(query_mat_abundance_nor, GTEx_t_score, ratio = 0.05, p.adjust.method = "BH")`  
 Then, the tissue specific enrichment analysis for query RNA-seq is finish. After tissue specific enrichment decode analysis, one-side t-test results between query RNA-seq sample tissue specific genes (top 5%) versus remains genes (95%) is stored in variable `tseaed_in_GTEx`. Further analysis for top 3 most associated tissues is similar to previous analysis:  
 `> tsea.plot(tseaed_in_GTEx, 0.05)`  
 `> tseaed_in_GTEx_summary = tsea.summary(tseaed_in_GTEx)`  
 `> write.csv(tseaed_in_GTEx_summary,"RNAseq_summary_in_GTEx_panel.csv")`  
+
+To prove the robustness of our proposed pipeline, user can validate the two reference panels through self-validation. Simply, load GTEx example RNA-seq profiles and perform tissue-specific enrichment analysis in ENCODE panel.  
+`> load("data/query_GTEx.rda")`  
+`> query.matrix = query_ENCODE`  
+RNA expression profiles z-score normalization   
+`> query_mat_zscore_nor = tsea.expression.normalization(query_matrix, GTEx_ave_sd, normalization = "z-score")`  
+RNA expression profiles TSEA in ENCODE panel		
+`> tseaed_in_ENCODE = tsea.expression.decode(query_mat_zscore_nor, ENCODE_z_score, ratio = 0.05, p.adjust.method = "BH")`  
+
+The reader is encouraged to open and view the file in a spreadsheet software, or inspect it directly within R using the command `fix(tseaed_in_ENCODE)`. In addition, sometime, you might want to edit some parameters for your own data, e.g., you can change the `GTEx_t_score` to `ENCODE_z_score` for ENCODE tissue specific enrichment analysis, you can also change the tissue specific genes `ratio` from `0.05` to `0.2`, or change the `p.adjust.method` to `"bonferroni"`.  
 
 ## Citation
 Pei G., Dai Y., Zhao Z, Jia P. (2018) Tissue-Specific Enrichment Analysis (TSEA) to decode tissue heterogeneity. In submission.  
