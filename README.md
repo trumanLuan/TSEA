@@ -90,7 +90,7 @@ Then, the tissue specific enrichment analysis for query RNA-seq is finish. After
 `> tseaed_in_GTEx_summary = tsea.summary(tseaed_in_GTEx)`  
 `> write.csv(tseaed_in_GTEx_summary,"RNAseq_summary_in_GTEx_panel.csv")`  
 
-To prove the robustness of our proposed pipeline, user can validate the two reference panels through self-validation. Simply, load GTEx example RNA-seq profiles and perform tissue-specific enrichment analysis in ENCODE panel: 
+To prove the robustness of our proposed pipeline, user can validate the two reference panels through self-validation. Simply, load GTEx example RNA-seq profiles and perform tissue-specific enrichment analysis in ENCODE panel:  
 `> load("data/query_GTEx.rda")`  
 `> query.matrix = query_ENCODE`  
 RNA expression profiles z-score normalization:   
