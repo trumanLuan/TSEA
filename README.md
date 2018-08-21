@@ -95,7 +95,7 @@ To prove the robustness of our proposed pipeline, user can validate the two refe
 `> query.matrix = query_ENCODE`  
 RNA expression profiles z-score normalization   
 `> query_mat_zscore_nor = tsea.expression.normalization(query_matrix, GTEx_ave_sd, normalization = "z-score")`  
-RNA expression profiles TSEA in ENCODE panel		
+RNA expression profiles TSEA in ENCODE panel  		
 `> tseaed_in_ENCODE = tsea.expression.decode(query_mat_zscore_nor, ENCODE_z_score, ratio = 0.05, p.adjust.method = "BH")`  
 
 The reader is encouraged to open and view the file in a spreadsheet software, or inspect it directly within R using the command `fix(tseaed_in_ENCODE)`. In addition, sometime, you might want to edit some parameters for your own data, e.g., you can change the `GTEx_t_score` to `ENCODE_z_score` for ENCODE tissue specific enrichment analysis, you can also change the tissue specific genes `ratio` from `0.05` to `0.2`, or change the `p.adjust.method` to `"bonferroni"`.  
