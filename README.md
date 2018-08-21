@@ -18,6 +18,7 @@ Load the TSEA package and dependent library
 `> library(pheatmap)`  
 ## 2.2 Built-in data loading
 TSEA requires two reference panels to conduct the enrichment test: one from GTEx and the other from ENCODE. For GTEx, a matrix including the summary statistics for each tissue is also needed. All datasets have been included in the package. After installation of the package, one can load the data using the following commands:  
+
 Load the t-statistic matrix for the GTEx panel:  
 `> load("data/GTEx_t_score.rda")`  
 Load the z-score matrix for the ENCODE panel:  
