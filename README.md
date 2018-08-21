@@ -8,6 +8,7 @@ The pheatmap relies on CRAN. Please follow their installation instruction.
 install.packages("pheatmap")
 ### To download the codes, please do:
 git clone https://github.com/bsml320/TSEA/TSEA_1.0.tar.gz
+
 install.packages("TSEA")
 ### TSEA loading
 load the TSEA package and dependent library
