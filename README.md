@@ -16,6 +16,7 @@ load the TSEA package and dependent library
 ## 2.2 Built-in data loading
 load the t-statistic matrix for the GTEx panel
 > data(GTEx_t_score)
+
 load the z-score matrix for the ENCODE panel
 > data(ENCODE_z_score)
 ## 2.3 Input data
