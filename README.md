@@ -100,6 +100,11 @@ RNA expression profiles TSEA in ENCODE panel:
 
 The reader is encouraged to open and view the file in a spreadsheet software, or inspect it directly within R using the command `fix(tseaed_in_ENCODE)`. In addition, sometime, you might want to edit some parameters for your own data, e.g., you can change the `GTEx_t_score` to `ENCODE_z_score` for ENCODE tissue specific enrichment analysis, you can also change the tissue specific genes `ratio` from `0.05` to `0.2`, or change the `p.adjust.method` to `"bonferroni"`.  
 
+Further analysis for top 3 most associated tissues is similar to previous analysis:  
+`> tsea.plot(tseaed_in_ENCODE, 0.05)`  
+`> tseaed_in_ENCODE_summary = tsea.summary(tseaed_in_ENCODE)`  
+`> write.csv(tseaed_in_ENCODE_summary,"output.csv")`  
+
 ## Citation
 Pei G., Dai Y., Zhao Z, Jia P. (2018) Tissue-Specific Enrichment Analysis (TSEA) to decode tissue heterogeneity. In submission.  
 
