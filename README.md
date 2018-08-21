@@ -49,9 +49,9 @@ Load multiple gene symbol from TSEA package.
 `> load("data/GWAS_gene_multiple.rda")`  
 `> query.gene.list = GWAS_gene_multiple`  
 Or you can read your own gene symbol list from a text file.  
-`> dat = read.table("Gene_list_multiple.txt", head = T, row.names = 1)  `
+`> dat = read.table("Gene_list_multiple.txt", head = T, row.names = 1)`  
 `> query.gene.list = dat`  
-Check the total genes number for each sample. To keep result reliable, please keep at least 20 genes for each samples.  
+Check the total genes number for each sample. To keep result reliable, please keep at least 20 genes for each samples.   
 `> colSums(query.gene.list)`  
 Then, we can make tissue specific enrichment analysis for multiple samples by `tsea.analysis.multiple()` and plot the result by `tsea.plot()`. You can summary the top 3 most associated tissues by `tsea.summary() function` and save your result in to a text-format spreadsheet:  
 Tissue-specific enrichment analysis in GTEx panel:  
