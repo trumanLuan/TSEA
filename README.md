@@ -5,17 +5,17 @@ Genome-wide association studies (GWAS) and next-generation sequencing technologi
 ### Requirements
 TSEA relies on R (>= 3.4), pheatmap (>= 1.0.10), RColorBrewer (>= 1.1)  
 The pheatmap relies on CRAN. Please follow their installation instruction.  
-install.packages("pheatmap")  
+`> install.packages("pheatmap")  `
 ### To download the codes, please do:
 git clone https://github.com/bsml320/TSEA.git  
 cd TSEA  
 Then open the R：  
 R  
-> install.packages("TSEA_1.0.tar.gz")  
+`> install.packages("TSEA_1.0.tar.gz")  `
 ### TSEA loading
-load the TSEA package and dependent library
-> library(TSEA)
-> library(pheatmap)
+load the TSEA package and dependent library  
+`> library(TSEA)  `
+`> library(pheatmap)  `
 ## 2.2 Built-in data loading
 load the t-statistic matrix for the GTEx panel, 
 > load("data/GTEx_t_score.rda")
