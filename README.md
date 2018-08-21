@@ -32,7 +32,7 @@ Load gene symbol from TSEA package:
 `> load("data/GWAS_gene.rda")`  
 `> query.genes = GWAS_gene`  
 Or you can read your own gene symbol list from a text file:  
-`> dat = read.table("data/Gene_list.txt",head = F)`  
+`> dat = read.table("data/Gene_list.txt", head = F)`  
 `> query.genes = dat[,1]`  
 
 Nextly, we perform tissue-specific enrichment analysis for query gene list:  
@@ -112,21 +112,3 @@ Further analysis for top 3 most associated tissues is similar to previous analys
 
 ## Citation
 Pei G., Dai Y., Zhao Z, Jia P. (2018) Tissue-Specific Enrichment Analysis (TSEA) to decode tissue heterogeneity. In submission.  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
