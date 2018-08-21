@@ -97,7 +97,7 @@ To prove the robustness of our proposed pipeline, user can validate the two refe
 `> load("data/query_GTEx.rda")`  
 `> query.matrix = query_ENCODE`  
 RNA expression profiles z-score normalization:   
-`> query_mat_zscore_nor = tsea.expression.normalization(query_matrix, GTEx_ave_sd, normalization = "z-score")`  
+`> query_mat_zscore_nor = tsea.expression.normalization(query.matrix, correction_factor, normalization = "z-score")`  
 RNA expression profiles TSEA in ENCODE panel:  
 `> tseaed_in_ENCODE = tsea.expression.decode(query_mat_zscore_nor, ENCODE_z_score, ratio = 0.05, p.adjust.method = "BH")`  
 
