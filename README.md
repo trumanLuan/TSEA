@@ -21,7 +21,7 @@ Load the t-statistic matrix for the GTEx panel:
 `> load("data/GTEx_t_score.rda")`  
 Load the z-score matrix for the ENCODE panel:  
 `> load("data/ENCODE_z_score.rda")`  
-Then "GTEx_t_score" and "ENCODE_z_score" panels will be loaded to R enviroment.  
+Then `"GTEx_t_score"` and `"ENCODE_z_score"` panels will be loaded to R enviroment.  
 ## 2.3 Input data
 TSEA deals with two types of enrichment analysis for different forms of query data. For convenience, we provide two TSEA functions for query gene lists (single sample and multiple samples), and another function for RNA-Seq expression profiles tissue-specific enrichment analysis.    
 ### 2.3.1 TSEA for gene lists
@@ -95,7 +95,7 @@ Then, the tissue specific enrichment analysis for query RNA-seq is finish. After
 
 To prove the robustness of our proposed pipeline, user can validate the two reference panels through self-validation. Simply, load GTEx example RNA-seq profiles and perform tissue-specific enrichment analysis in ENCODE panel:  
 `> load("data/query_GTEx.rda")`  
-`> query.matrix = query_ENCODE`  
+`> query.matrix = query_GTEx`  
 RNA expression profiles z-score normalization:   
 `> query_mat_zscore_nor = tsea.expression.normalization(query.matrix, correction_factor, normalization = "z-score")`  
 RNA expression profiles TSEA in ENCODE panel:  
