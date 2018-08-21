@@ -32,6 +32,7 @@ Load gene symbol from TSEA package:
 Or you can read your own gene symbol list from a text file:  
 `> dat = read.table("data/Gene_list.txt",head = F)`  
 `> query.genes = dat[,1]`  
+
 Nextly, we perform tissue-specific enrichment analysis for query gene list:  
 `> tsea_t = tsea.analysis(query.genes, GTEx_t_score, ratio = 0.05, p.adjust.method = "bonferroni")`  
 Here, the ratio is a value to define tissue-specific genes (default is 5%) and provides the first way of categorizing genes.  
