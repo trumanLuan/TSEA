@@ -17,22 +17,22 @@ load the TSEA package and dependent library
 `> library(TSEA)`  
 `> library(pheatmap)`  
 ## 2.2 Built-in data loading
-load the t-statistic matrix for the GTEx panel  
+load the t-statistic matrix for the GTEx panel:  
 `> load("data/GTEx_t_score.rda")`  
-load the z-score matrix for the ENCODE panel  
+load the z-score matrix for the ENCODE panel:  
 `> load("data/ENCODE_z_score.rda")`  
 Then "GTEx_t_score" and "ENCODE_z_score" panels will be loaded to R enviroment.  
 ## 2.3 Input data
 TSEA deals with two types of enrichment analysis for different forms of query data. For convenience, we provide two TSEA functions for query gene lists (single sample and multiple samples), and another function for RNA-Seq expression profiles tissue-specific enrichment analysis.    
 ### 2.3.1 TSEA for gene lists
 When the query data are lists of genes, the Fisher’s Exact Test is implemented. The function is `tsea.analysis()`. The input is a vector of gene symbols. Here we used disease-associated genes identified from GWAS summary statistics as an example. The gene symbols can be found here:  
-Load gene symbol from TSEA package.  
+Load gene symbol from TSEA package:  
 `> load("data/GWAS_gene.rda")`  
 `> query.genes = GWAS_gene`  
-Or you can read your own gene symbol list from a text file.  
+Or you can read your own gene symbol list from a text file:  
 `> dat = read.table("data/Gene_list.txt",head = F)`  
 `> query.genes = dat[,1]`  
-Nextly, we perform tissue-specific enrichment analysis for query gene list.  
+Nextly, we perform tissue-specific enrichment analysis for query gene list:  
 `> tsea_t = tsea.analysis(query.genes, GTEx_t_score, ratio = 0.05, p.adjust.method = "bonferroni")`  
 Here, the ratio is a value to define tissue-specific genes (default is 5%) and provides the first way of categorizing genes.  
 The second way of grouping genes is based on the query genes. The two ways of category form a two by two table, which is used in the Fisher’s Exact Text.  
@@ -45,15 +45,15 @@ For better visualization and summary, we provide one plot and one summary functi
 
 ### 2.3.2 TSEA for multiple gene lists  
 In most condition, you might want to analysis multiple samples together, then you can upload a 0~1 table. In the table, gene labeled with 1 indicated significant associate within a sample, while 0 indicated not in a given sample. You can check the format of example data.  
-Load multiple gene symbol from TSEA package.  
+Load multiple gene symbol from TSEA package:  
 `> load("data/GWAS_gene_multiple.rda")`  
 `> query.gene.list = GWAS_gene_multiple`  
-Or you can read your own gene symbol list from a text file.  
+Or you can read your own gene symbol list from a text file:  
 `> dat = read.table("Gene_list_multiple.txt", head = T, row.names = 1)`  
 `> query.gene.list = dat`  
 
 To keep result reliable, please keep at least 20 genes for each samples.   
-Check the total genes number for each sample.  
+You can check the total genes number for each sample:  
 `> colSums(query.gene.list)`  
 Then, we can make tissue specific enrichment analysis for multiple samples by `tsea.analysis.multiple()` and plot the result by `tsea.plot()`. You can summary the top 3 most associated tissues by `tsea.summary()` function and save your result in to a text-format spreadsheet:  
 Tissue-specific enrichment analysis in GTEx panel:  
@@ -90,12 +90,12 @@ Then, the tissue specific enrichment analysis for query RNA-seq is finish. After
 `> tseaed_in_GTEx_summary = tsea.summary(tseaed_in_GTEx)`  
 `> write.csv(tseaed_in_GTEx_summary,"RNAseq_summary_in_GTEx_panel.csv")`  
 
-To prove the robustness of our proposed pipeline, user can validate the two reference panels through self-validation. Simply, load GTEx example RNA-seq profiles and perform tissue-specific enrichment analysis in ENCODE panel.  
+To prove the robustness of our proposed pipeline, user can validate the two reference panels through self-validation. Simply, load GTEx example RNA-seq profiles and perform tissue-specific enrichment analysis in ENCODE panel: 
 `> load("data/query_GTEx.rda")`  
 `> query.matrix = query_ENCODE`  
-RNA expression profiles z-score normalization   
+RNA expression profiles z-score normalization:   
 `> query_mat_zscore_nor = tsea.expression.normalization(query_matrix, GTEx_ave_sd, normalization = "z-score")`  
-RNA expression profiles TSEA in ENCODE panel  
+RNA expression profiles TSEA in ENCODE panel:  
 `> tseaed_in_ENCODE = tsea.expression.decode(query_mat_zscore_nor, ENCODE_z_score, ratio = 0.05, p.adjust.method = "BH")`  
 
 The reader is encouraged to open and view the file in a spreadsheet software, or inspect it directly within R using the command `fix(tseaed_in_ENCODE)`. In addition, sometime, you might want to edit some parameters for your own data, e.g., you can change the `GTEx_t_score` to `ENCODE_z_score` for ENCODE tissue specific enrichment analysis, you can also change the tissue specific genes `ratio` from `0.05` to `0.2`, or change the `p.adjust.method` to `"bonferroni"`.  
