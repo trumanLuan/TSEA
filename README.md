@@ -78,10 +78,10 @@ Load correction variable:
 `> load("data/correction_factor.rda")` 
 
 As RNA-Seq samples are often heterogeneous, before in-depth analysis, it’s necessary to decode tissue heterogeneity to avoid samples with confounding effects. However, the raw discrete RPKM value should be normalized to continuous variable meet the normal distribution before t-test. We provided two normalization approaches: `"z-score"` and `"abundance"` in function `tsea.expression.normalization()`:  
-(1) `z-score` normalization will calculate a z-score for the query sample for each tissue in the reference panel as below: e_i=(e_0-μ_t))/sd_t, where μ_t and sd_t were the mean and SD of tissue t.   
-(2) `abundance` normalization will provide an abundance correction approach for the query sample for each tissue in the reference panel as below: e_i=(log2(e_0+1)/(log2(u_t+1)+1).  
+(1) `"z-score"` normalization will calculate a z-score for the query sample for each tissue in the reference panel as below: e_i=(e_0-μ_t))/sd_t, where μ_t and sd_t were the mean and SD of tissue t.   
+(2) `"abundance"` normalization will provide an abundance correction approach for the query sample for each tissue in the reference panel as below: e_i=(log2(e_0+1)/(log2(u_t+1)+1).  
 
-We have the preloaded the test RPKM variable in `query.matrix` and correction variable in `correction_factor`, we take "abundance" normalization approach as an example, simply type:  
+We have the preloaded the test RPKM variable in `query.matrix` and correction variable in `correction_factor`, we take `"abundance"` normalization approach as an example, simply type:  
 RNA-Seq profiles scale by abundance normalization:  
 `> query_mat_abundance_nor = tsea.expression.normalization(query.matrix, correction_factor, normalization = "abundance")`  
 
