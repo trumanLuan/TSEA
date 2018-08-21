@@ -50,7 +50,7 @@ Load multiple gene symbol from TSEA package:
 `> load("data/GWAS_gene_multiple.rda")`  
 `> query.gene.list = GWAS_gene_multiple`  
 Or you can read your own gene symbol list from a text file:  
-`> dat = read.table("Gene_list_multiple.txt", head = T, row.names = 1)`  
+`> dat = read.table("data/Gene_list_multiple.txt", head = T, row.names = 1)`  
 `> query.gene.list = dat`  
 
 To keep result reliable, please keep at least 20 genes for each samples.   
