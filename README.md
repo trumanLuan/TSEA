@@ -13,13 +13,13 @@ Then open the R:
 `R`  
 `> install.packages("TSEA_1.0.tar.gz")  `
 ### TSEA loading
-load the TSEA package and dependent library  
+Load the TSEA package and dependent library  
 `> library(TSEA)`  
 `> library(pheatmap)`  
 ## 2.2 Built-in data loading
-load the t-statistic matrix for the GTEx panel:  
+Load the t-statistic matrix for the GTEx panel:  
 `> load("data/GTEx_t_score.rda")`  
-load the z-score matrix for the ENCODE panel:  
+Load the z-score matrix for the ENCODE panel:  
 `> load("data/ENCODE_z_score.rda")`  
 Then "GTEx_t_score" and "ENCODE_z_score" panels will be loaded to R enviroment.  
 ## 2.3 Input data
