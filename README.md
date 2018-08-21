@@ -1,26 +1,26 @@
 # 1. TSEA introduction
 Genome-wide association studies (GWAS) and next-generation sequencing technologies have identified hundreds of thousands of disease-associated variants and genes. Interpretation of these variants could be greatly enhanced in tissue-specific systems. However, there are many diseases or traits where the causal tissues or cell types remain unknown. Tissue-Specific Enrichment Analysis (TSEA) is an R package to identify the most relevant tissues for candidate genes or for gene expression profiles. TSEA builds on two pre-processed reference panels. We implemented different statistic tests for different forms of query data. 
 # 2. Usage
-# 2.1 Installing TSEA
-## Requirements
+## 2.1 Installing TSEA
+### Requirements
 TSEA relies on R (>= 3.4), pheatmap (>= 1.0.10), RColorBrewer (>= 1.1)
 The pheatmap relies on CRAN. Please follow their installation instruction.
 install.packages("pheatmap")
-## To download the codes, please do:
+### To download the codes, please do:
 git clone https://github.com/bsml320/TSEA/TSEA_1.0.tar.gz
 install.packages("TSEA")
-## TSEA loading
+### TSEA loading
 load the TSEA package and dependent library
 > library(TSEA)
 > library(pheatmap)
-# 2.2 Built-in data loading
+## 2.2 Built-in data loading
 load the t-statistic matrix for the GTEx panel
 > data(GTEx_t_score)
 load the z-score matrix for the ENCODE panel
 > data(ENCODE_z_score)
-# 2.3 Input data
+## 2.3 Input data
 TSEA deals with two types of enrichment analysis for different forms of query data. 
-# 2.3.1 TSEA for gene lists
+### 2.3.1 TSEA for gene lists
 When the query data are lists of genes, the Fisher’s Exact Test is implemented. The function is tsea.analysis(). The input is a vector of gene symbols. Here we used disease-associated genes identified from GWAS summary statistics as an example. The gene symbols can be found here:
 Load gene symbol from TSEA package.
 > data(GWAS_gene)
