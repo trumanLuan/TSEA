@@ -55,6 +55,7 @@ Or you can read your own gene symbol list from a text file:
 To keep result reliable, please keep at least 20 genes for each samples.   
 You can check the total genes number for each sample:  
 `> colSums(query.gene.list)`  
+
 Then, we can make tissue specific enrichment analysis for multiple samples by `tsea.analysis.multiple()` and plot the result by `tsea.plot()`. You can summary the top 3 most associated tissues by `tsea.summary()` function and save your result in to a text-format spreadsheet:  
 Tissue-specific enrichment analysis in GTEx panel:  
 `> tsea_t_multi = tsea.analysis.multiple(query.gene.list, GTEx_t_score, ratio = 0.05, p.adjust.method = "BH")`  
@@ -83,6 +84,7 @@ As RNA-Seq samples are often heterogeneous, before in-depth analysis, it’s nec
 We have the preloaded the test RPKM variable in `query.matrix` and correction variable in `correction_factor`, we take "abundance" normalization approach as an example, simply type:  
 RNA-Seq profiles scale by abundance normalization:  
 `> query_mat_abundance_nor = tsea.expression.normalization(query.matrix, correction_factor, normalization = "abundance")`  
+
 After get normalized RPKM value, we submit it for `tsea.expression.decode()`:   
 `> tseaed_in_GTEx = tsea.expression.decode(query_mat_abundance_nor, GTEx_t_score, ratio = 0.05, p.adjust.method = "BH")`  
 Then, the tissue specific enrichment analysis for query RNA-seq is finish. After tissue specific enrichment decode analysis, one-side t-test results between query RNA-seq sample tissue specific genes (top 5%) versus remains genes (95%) is stored in variable `tseaed_in_GTEx`. Further analysis for top 3 most associated tissues is similar to previous analysis:  
