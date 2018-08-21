@@ -53,7 +53,7 @@ Or you can read your own gene symbol list from a text file.
 `> query.gene.list = dat`  
 
 To keep result reliable, please keep at least 20 genes for each samples.   
-Check the total genes number for each sample.
+Check the total genes number for each sample.  
 `> colSums(query.gene.list)`  
 Then, we can make tissue specific enrichment analysis for multiple samples by `tsea.analysis.multiple()` and plot the result by `tsea.plot()`. You can summary the top 3 most associated tissues by `tsea.summary()` function and save your result in to a text-format spreadsheet:  
 Tissue-specific enrichment analysis in GTEx panel:  
