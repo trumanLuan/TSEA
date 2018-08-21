@@ -21,7 +21,7 @@ Load the t-statistic matrix for the GTEx panel:
 `> load("data/GTEx_t_score.rda")`  
 Load the z-score matrix for the ENCODE panel:  
 `> load("data/ENCODE_z_score.rda")`  
-Then `"GTEx_t_score"` and `"ENCODE_z_score"` panels will be loaded to R enviroment.  
+Then `"GTEx_t_score"` and `"ENCODE_z_score"` will be loaded to R enviroment.  
 ## 2.3 Input data
 TSEA deals with two types of enrichment analysis for different forms of query data. For convenience, we provide two TSEA functions for query gene lists (single sample and multiple samples), and another function for RNA-Seq expression profiles tissue-specific enrichment analysis.    
 ### 2.3.1 TSEA for gene lists
@@ -106,7 +106,7 @@ The reader is encouraged to open and view the file in a spreadsheet software, or
 Further analysis for top 3 most associated tissues is similar to previous analysis:  
 `> tsea.plot(tseaed_in_ENCODE, threshold = 0.05)`  
 `> tseaed_in_ENCODE_summary = tsea.summary(tseaed_in_ENCODE)`  
-`> write.csv(tseaed_in_ENCODE_summary,"output.csv")`  
+`> write.csv(tseaed_in_ENCODE_summary,"RNAseq_summary_in_ENCODE_panel.csv")`  
 
 ## Citation
 Pei G., Dai Y., Zhao Z, Jia P. (2018) Tissue-Specific Enrichment Analysis (TSEA) to decode tissue heterogeneity. In submission.  
