@@ -14,8 +14,8 @@ Then open the R:
 `> install.packages("TSEA_1.0.tar.gz")  `
 ### TSEA loading
 load the TSEA package and dependent library  
-`> library(TSEA)  `
-`> library(pheatmap)  `
+`> library(TSEA)`  
+`> library(pheatmap)`  
 ## 2.2 Built-in data loading
 load the t-statistic matrix for the GTEx panel  
 `> load("data/GTEx_t_score.rda")`  
